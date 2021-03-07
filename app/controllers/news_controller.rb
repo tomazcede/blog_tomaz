@@ -1,6 +1,7 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :authorize_user!, except: [ :index, :show ]
 
   # GET /news or /news.json
   def index
@@ -67,5 +68,9 @@ class NewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def news_params
       params.require(:news).permit(:title, :body)
+    end
+
+    def authorize_user!
+      redirect_back fallback_location: root_path, alert: 'Nimate dostopa do strani' unless current_user == @news.user
     end
 end
