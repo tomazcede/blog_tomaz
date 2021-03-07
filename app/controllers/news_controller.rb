@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [ :index, :show ]
 
   # GET /news or /news.json
   def index
@@ -22,6 +23,7 @@ class NewsController < ApplicationController
   # POST /news or /news.json
   def create
     @news = News.new(news_params)
+    @news.user = current_user
 
     respond_to do |format|
       if @news.save
