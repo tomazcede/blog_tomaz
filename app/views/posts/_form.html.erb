@@ -11,17 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, required: true %>
-  </div>
+  <div>
+    <p class="field">
+      <p>
+        <%= form.label :title %>
+      </p>
+      <%= form.text_field :title, required: true %>
+    </p>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, required: true %>
-  </div>
+    <p class="field">
+      <p>
+        <%= form.label :body %> :
+      </p>
+      <%= form.text_area :body, required: true %>
+    </p>
 
-  <div class="actions">
-    <%= form.submit %>
+    
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>
