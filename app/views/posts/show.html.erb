@@ -1,17 +1,14 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="row">
+    <div class="col-md-8">
+		<article class="blog-post">
+		    <h1 class="blog-post-title"><%= @post.title %></h1>
+		    <p class="blog-post-meta">Author: <%= @post.user.name %></p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @post.user.name %>
-</p>
+		    <p> <%= @post.body %> </p>
+		    <hr>
+		</article>
+	</div>
+</div>
 
 <%= display_post_show_links(@post) %>
 

@@ -1,20 +1,24 @@
 module NewsHelper
 	def display_news_index_links(news)
-		html = "<td>#{link_to 'Show', news}</td>"
-		if current_user == news.user
-	        html += "<td>#{link_to 'Edit', edit_news_path(news)}</td>"
-	        html += "<td>#{link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' }}</td>"
-	    end
-        html.html_safe
+		concat link_to 'Show', news
+        capture do
+			if current_user == news.user
+		        concat link_to 'Edit', edit_news_path(news)
+		        concat " "
+		        concat link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' }
+		        concat " "
+
+		    end
+		end
 	end
 
 	def display_news_show_links(news)
-		html = ""
-		if current_user == news.user
-			html += link_to 'Edit', edit_news_path(news)
-			html += ' | '
+		capture do
+			if current_user == news.user
+				concat link_to 'Edit', edit_news_path(news)
+				concat " "
+			end
+			concat link_to 'Back', news_path
 		end
-		html += link_to 'Back', news_path
-		html.html_safe
 	end
 end

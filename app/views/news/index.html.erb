@@ -2,27 +2,24 @@
 
 <h1>News</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Author</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<body>
+  <div class="container">
     <% @news.each do |news| %>
-      <tr>
-        <td><%= news.title %></td>
-        <td><%= news.body %></td>
-        <td><%= news.user.name || 'Anonimen avtor' %></td>
-        <%= display_news_index_links(news) %>
-      </tr>
+
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0"><%= news.title %></h3>
+            <div class="mb-1 text-muted"><%= news.user.name || 'Anonimen avtor' %></div>
+            <p class="card-text mb-auto"><%= news.body %></p>
+            <p> <%= display_news_index_links(news) %></p>
+          </div>
+        </div>
+      </div>
+
     <% end %>
-  </tbody>
-</table>
+  </div>
+</body>
 
 <br>
 
